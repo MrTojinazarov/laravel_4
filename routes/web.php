@@ -20,6 +20,10 @@ Route::delete('/company/{id}', [CompanyController::class, 'delete']);
 
 
 Route::get('/product', [ProductController::class, 'product']);
+Route::get('/product-create', [ProductController::class, 'create']);
+Route::post('/product', [ProductController::class, 'store']);
+Route::delete('/product/{id}', [ProductController::class, 'delete']);
+
 
 
 Route::get('/client', [ClientController::class, 'client']);
