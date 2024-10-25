@@ -17,6 +17,7 @@ Route::get('/company', [CompanyController::class, 'company']);
 Route::get('/company-create', [CompanyController::class, 'create']);
 Route::post('/company', [CompanyController::class, 'store']);
 Route::delete('/company/{id}', [CompanyController::class, 'delete']);
+Route::get('/company/{id}', [CompanyController::class, 'addProduct']);
 
 
 Route::get('/product', [ProductController::class, 'product']);

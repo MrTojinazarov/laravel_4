@@ -35,4 +35,10 @@ class CompanyController extends Controller
         $model->delete();
         return redirect('/company')->with('success', 'Category successfully deleted');
     }
+
+    public function addProduct($id)
+    {
+        $models = Company::find($id);
+        return view('company.addProduct', ['models'=> $models]);
+    }
 }
