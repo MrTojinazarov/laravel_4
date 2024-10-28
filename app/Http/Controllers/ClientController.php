@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ClientStoreRequest;
+use App\Http\Requests\ClientUpdateRequest;
 use App\Models\Client;
 use Illuminate\Http\Request;
 
@@ -34,4 +35,20 @@ class ClientController extends Controller
         $model->delete();
         return redirect('/client')->with('success', 'Category successfully deleted');
     }
+
+    public function update(ClientUpdateRequest $request, $id)
+    {
+        $client = Client::findOrFail($id);
+        
+        $client->login = $request->input('login');
+        
+        if ($request->filled('password')) {
+            $client->password = bcrypt($request->input('password'));
+        }
+    
+        $client->save();
+    
+        return redirect()->route('client.index')->with('success', 'Client updated successfully.');
+    }
+    
 }

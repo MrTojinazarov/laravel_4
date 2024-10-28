@@ -20,14 +20,17 @@ Route::delete('/company/{id}', [CompanyController::class, 'delete']);
 Route::get('/company/{id}', [CompanyController::class, 'addProduct']);
 
 
-Route::get('/product', [ProductController::class, 'product']);
+Route::get('/product', [ProductController::class, 'product'])->name('product.index');
 Route::get('/product-create', [ProductController::class, 'create']);
 Route::post('/product', [ProductController::class, 'store']);
 Route::delete('/product/{id}', [ProductController::class, 'delete']);
+Route::put('/product/{id}', [ProductController::class, 'update'])->name('product.update');
 
 
 
-Route::get('/client', [ClientController::class, 'client']);
+Route::get('/client', [ClientController::class, 'client'])->name('client.index');
 Route::get('/client-create', [ClientController::class, 'create']);
 Route::post('/client', [ClientController::class, 'store']);
-Route::delete('client/{id}', [ClientController::class, 'delete']);
+Route::delete('/client/{id}', [ClientController::class, 'delete'])->name('client.destroy');
+Route::put('/client/{user}', [ClientController::class, 'update'])->name('client.update');
+
