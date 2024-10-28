@@ -110,6 +110,7 @@
                     </table>
                 </div>
             </div>
+            {{$models->links()}}
         </div>
     </div>
 

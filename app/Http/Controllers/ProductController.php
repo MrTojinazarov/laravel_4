@@ -13,7 +13,7 @@ class ProductController extends Controller
     public function  product()
     {
 
-        $models = Product::all();
+        $models = Product::orderBy('id', 'desc')->paginate(3);
         $company = Company::all();
         return view('/product.index', ['models' => $models, 'companies' => $company]);
     }

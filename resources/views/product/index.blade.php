@@ -163,8 +163,9 @@
                             </tbody>
                         @endforeach
                     </table>
+                  </div>
                 </div>
-            </div>
+                {{$models->links()}}
         </div>
     </div>
 
