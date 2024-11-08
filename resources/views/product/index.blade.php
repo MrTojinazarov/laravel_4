@@ -6,7 +6,13 @@
 
     <div class="row pt-3">
         <div class="col-12">
-            <a href="/product-create" class="btn btn-primary" style="width: 100px">Create</a>
+            @if (Auth::user()->role == 'creator')
+                <a href="/product-create" class="btn btn-primary" style="width: 100px">Create</a>
+            @else
+                <h2>
+                    <p class="text" style="color: red;">Sizda "create" qilish uchun ruxsat yo'q.</p>
+                </h2>
+            @endif
         </div>
     </div>
 
@@ -54,10 +60,15 @@
                                     <td>{{ $model->quantity }}</td>
                                     <td><img src="{{ asset($model->img) }}" style="width: 200px;" alt="Not img"></td>
                                     <td>
-                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                            data-bs-target="#exampleModal{{ $model->id }}">
-                                            Update
-                                        </button>
+                                        @if (Auth::user()->role == 'editor')
+                                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                                data-bs-target="#exampleModal{{ $model->id }}">
+                                                Update
+                                            </button>
+                                        @else
+                                            <p class="text" style="color: red;">Sizda "update" qilish uchun ruxsat yo'q.
+                                            </p>
+                                        @endif
                                         <div class="modal fade" id="exampleModal{{ $model->id }}" tabindex="-1"
                                             aria-labelledby="exampleModalLabel" aria-hidden="true">
                                             <div class="modal-dialog">
@@ -156,16 +167,22 @@
                                         <form action="/product/{{ $model->id }}" method="POST">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-danger">Delete</button>
+                                            @if (Auth::user()->role == 'deleter')
+                                                <button type="submit" class="btn btn-danger">Delete</button>
+                                            @else
+                                                <p class="text" style="color: red;">Sizda "delete" qilish uchun
+                                                    ruxsat
+                                                    yo'q.</p>
+                                            @endif
                                         </form>
                                     </td>
                                 </tr>
                             </tbody>
                         @endforeach
                     </table>
-                  </div>
                 </div>
-                {{$models->links()}}
+            </div>
+            {{ $models->links() }}
         </div>
     </div>
 
