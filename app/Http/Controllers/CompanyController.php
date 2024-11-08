@@ -9,10 +9,10 @@ use Illuminate\Http\Request;
 
 class CompanyController extends Controller
 {
-    public function  company()
+    public function  index()
     {
         $models = Company::all();
-        return view('/company.index', ['models' => $models]);
+        return view('company.index', ['models' => $models]);
     }
     
     public function create()
